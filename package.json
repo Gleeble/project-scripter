@@ -1,0 +1,8 @@
+{
+  "name": "project-scripter",
+  "version": "0.0.1",
+  "devDependencies": {
+    "commander": "2.3.0",
+    "underscore": "^1.6.0"
+  }
+}

@@ -1,4 +1,4 @@
-project-scripter v0.0.0
+project-scripter v0.0.1
 ================
 
 A Node.JS Scripting framework to support reusable scripts to reduce the complexity of all the 
