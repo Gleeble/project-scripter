@@ -44,8 +44,8 @@ jobs:
     name: Deploy to Int
     needs: build_js
     concurrency:
-      group: ${{ github.repository }}-int
-      cancel-in-progress: true
+      group: ${{ github.ref }}-int
+      cancel-in-progress: false
     runs-on: ubuntu-latest
     environment: int
     steps:
@@ -55,8 +55,8 @@ jobs:
     name: Deploy to QA
     needs: deploy_to_int
     concurrency:
-      group: ${{ github.repository }}-qa
-      cancel-in-progress: true
+      group: ${{ github.ref }}-qa
+      cancel-in-progress: false
     runs-on: ubuntu-latest
     environment: qa
     steps:
@@ -66,7 +66,7 @@ jobs:
     name: Lock For Prod
     needs: deploy_to_qa
     concurrency:
-      group: ${{ github.repository }}-lock
+      group: ${{ github.ref }}-lock
       cancel-in-progress: true
     runs-on: ubuntu-latest
     environment: prod
@@ -77,8 +77,8 @@ jobs:
     name: Deploy to Prod
     needs: lock_for_prod
     concurrency:
-      group: ${{ github.repository }}-prod
-      cancel-in-progress: true
+      group: ${{ github.ref }}-prod
+      cancel-in-progress: false
     runs-on: ubuntu-latest
     environment: prod
     steps:
