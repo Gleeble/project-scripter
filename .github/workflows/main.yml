@@ -53,7 +53,7 @@ jobs:
         run: echo "We are deploying to int"
   deploy_to_qa:
     name: Deploy to QA
-    needs: build_js
+    needs: deploy_to_int
     concurrency:
       group: ${{ github.repository }}-qa
       cancel-in-progress: true
@@ -64,7 +64,7 @@ jobs:
         run: echo "We are deploying to qa"
   lock_for_prod:
     name: Lock For Prod
-    needs: build_js
+    needs: deploy_to_qa
     concurrency:
       group: ${{ github.repository }}-lock
       cancel-in-progress: true
@@ -75,7 +75,7 @@ jobs:
         run: echo "Ok, this shit is locked"
   deploy_to_prod:
     name: Deploy to Prod
-    needs: build_js
+    needs: lock_for_prod
     concurrency:
       group: ${{ github.repository }}-prod
       cancel-in-progress: true
